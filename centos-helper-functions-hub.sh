@@ -61,3 +61,32 @@ installRuby () {
 	gem source -r https://rubygems.org/
 	
 }
+
+installNodejs () {
+
+	echo "[ Config ] install and config newer rpm source hub"
+	# for 64bit linux core
+	rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+	# for 32bit linux core
+	# rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+	rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+	rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+	rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+
+	echo "[ Install ] install nodejs(with npm)"
+	curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
+	yum -y install nodejs
+
+	echo "[ mirror ] set npm source mirror to TaoBaoNpmMirror"
+	npm config set registry https://registry.npm.taobao.org
+
+	echo "[ Install ] instal n module of npm for npm version control"
+	npm install -g n
+
+	echo "[ Install ] instal yarn of npm for nodejs package management"
+	npm install -g yarn
+
+	echo "[ mirror ] set yarn source mirror to TaoBaoNpmMirror"
+	yarn config set registry https://registry.npm.taobao.org
+
+}

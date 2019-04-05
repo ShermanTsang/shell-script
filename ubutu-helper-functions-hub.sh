@@ -75,8 +75,33 @@ installRuby () {
 	echo "[ Mirror ] set ruby cache accelerated mirror for chinese"
 	echo "ruby_url=https://cache.ruby-china.com/pub/ruby" > /usr/local/rvm/user/db 
 
+	echo "[ Install ] install Ruby latest"
+	rvm install ruby
+
 	echo "[ Mirror ] set ruby gem accelerated mirror for chinese"
 	gem source -a https://gems.ruby-china.com
 	gem source -r https://rubygems.org/
 	
+}
+
+installNodejs () {
+
+	echo "[ Install ] install nodejs latest"
+	apt-get -y install nodejs
+
+	echo "[ Install ] install npm latest"
+	apt-get -y install npm
+
+	echo "[ mirror ] set npm source mirror to TaoBaoNpmMirror"
+	npm config set registry https://registry.npm.taobao.org
+
+	echo "[ Install ] instal n module of npm for nodejs version control"
+	npm install -g n
+
+	echo "[ Install ] instal yarn of npm for npm package management"
+	npm install -g yarn
+
+	echo "[ mirror ] set yarn source mirror to TaoBaoNpmMirror"
+	yarn config set registry https://registry.npm.taobao.org
+
 }
