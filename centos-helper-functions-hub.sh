@@ -40,15 +40,24 @@ installOhMyZsh () {
 
 installRuby () {
 
+	echo "[ Install ] install gpg2"
+	yum install gnupg2
+
+	echo "[ Config ] set gpg2 key"
 	gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+	echo "[ Config ] set gpg2 key"
 	\curl -sSL https://get.rvm.io | bash -s stable
+
+	echo "[ Refresh ] make the configuration valid"
 	source ~/.bashrc
 	source ~/.bash_profile
 	
+	echo "[ Mirror ] set ruby cache accelerated mirror for chinese"
 	echo "ruby_url=https://cache.ruby-china.com/pub/ruby" > /usr/local/rvm/user/db 
 
+	echo "[ Mirror ] set ruby gem accelerated mirror for chinese"
 	gem source -a https://gems.ruby-china.com
-
 	gem source -r https://rubygems.org/
 	
 }

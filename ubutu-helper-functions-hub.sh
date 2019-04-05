@@ -12,11 +12,11 @@ echo "==========================================="
 setLangToChinese () {
 
 	echo "[ Install ] Install chinese lang pack for ubutu via apt-get"
-	apt-get install language-pack-zh-hans
+	apt-get -y install language-pack-zh-hant language-pack-zh-hans zhcon zh-autoconvert
 
 	echo "[ Config ] Config lang option sentences to relative files"
-	echo -e "LANG=\"zh_CN.UTF-8\"\nLANGUAGE=\"zh_CN:zh\"" > /etc/default/locale
-	echo -e "LANG=\"zh_CN.UTF-8\"\nLANGUAGE=\"zh_CN:zh:en_US:en\"" >> /etc/environment
+	echo -e "LANG="zh_CN.UTF-8"\nLANGUAGE="zh_CN:zh"" > /etc/default/locale
+	echo -e "LANG="zh_CN.UTF-8"\nLANGUAGE="zh_CN:zh:en_US:en"" >> /etc/environment
 	echo -e "en_US.UTF-8 UTF-8\nen_GB.UTF-8 UTF-8\nzh_CN.UTF-8 UTF-8\nzh_CN.GBK GBK\nzh_CN GB2312" >> /var/lib/locales/supported.d/local
 
 	echo "[ Generate ] Generate language files"
@@ -59,15 +59,24 @@ installOhMyZsh () {
 
 installRuby () {
 
+	echo "[ Install ] install gpg2"
+	apt-get install gnupg2
+
+	echo "[ Config ] set gpg2 key"
 	gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+	echo "[ Config ] set gpg2 key"
 	\curl -sSL https://get.rvm.io | bash -s stable
+
+	echo "[ Refresh ] make the configuration valid"
 	source ~/.bashrc
 	source ~/.bash_profile
 	
+	echo "[ Mirror ] set ruby cache accelerated mirror for chinese"
 	echo "ruby_url=https://cache.ruby-china.com/pub/ruby" > /usr/local/rvm/user/db 
 
+	echo "[ Mirror ] set ruby gem accelerated mirror for chinese"
 	gem source -a https://gems.ruby-china.com
-
 	gem source -r https://rubygems.org/
 	
 }
