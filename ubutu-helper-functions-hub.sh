@@ -48,7 +48,7 @@ installOhMyZsh () {
 	if( cat /etc/shells | grep zsh ){
 		echo "[ Check ] zsh is not found"
 		echo "[ Install ] install zsh via yum"
-		yum -y install zsh
+		apt install -y install zsh
 		echo "[ Config ] change the default shell to zsh"
 		chsh -s /bin/zsh
 	}
