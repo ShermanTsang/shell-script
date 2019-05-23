@@ -8,6 +8,22 @@ echo "==========================================="
 echo "ubutu-helper-functions-hub V.${version}"
 echo "==========================================="
 
+replaceSource () {
+	echo "[ Config ] replace ubutu software source with chinese source"
+	sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+	sudo echo "deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse" > /etc/apt/source.list
+	sudo apt-get update
+}
+
 
 setLangToChinese () {
 
