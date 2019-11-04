@@ -10,21 +10,22 @@ echo "==========================================="
 
 installOhMyZsh () {
 
-	if( cat /etc/shells | grep zsh ){
-		echo "[ Check ] zsh is not found"
-		echo "[ Install ] install zsh via yum"
-		yum -y install zsh
-		echo "[ Config ] change the default shell to zsh"
-		chsh -s /bin/zsh
-	}
-	echo "[ Install ] install oh-my-zsh from github source"
+    if( cat /etc/shells | grep zsh ){
+         echo "[ Check ] zsh is not found"
+         echo "[ Install ] install zsh via yum"
+         yum -y install zsh
+         echo "[ Config ] change the default shell to zsh"
+         chsh -s /bin/zsh
+    }
+    
+    echo "[ Install ] install oh-my-zsh from github source"
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
     echo "[ Config ] set oh-my-zsh bash theme to af-agic"
     sed -i 's/robbyrussell/af-magic/g' ~/.zshrc
 
-	echo "[ Config ] set oh-my-zsh plugins"
-    sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/g' ~/.zshrc
+    echo "[ Config ] set oh-my-zsh plugins"
+    sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions docker tmux fzf)/g' ~/.zshrc
 
     echo "[ Download ] download zsh plugin sources from github"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
@@ -33,7 +34,7 @@ installOhMyZsh () {
     echo "[ Config ] set oh-my-zsh time stamp format for chinese friendly"
     sed -i 's/\# HIST_STAMPS=\"mm\/dd\/yyyy\"/HIST_STAMPS=\"yyyy-mm-dd\"/' ~/.zshrc
 
-	echo "[ Refresh ] make the configuration valid"
+    echo "[ Refresh ] make the configuration valid"
     source ~/.zshrc
 
 }
