@@ -2,11 +2,30 @@
 # author:ShareManT
 # script:centos-helper-functions-hub
 
-version=1.0
+version=1.1
 
 echo "==========================================="
 echo "Centos-tookit-functions-hub V.${version}"
 echo "==========================================="
+
+modifyHostName() {
+
+    echo "[ Check ] current hostnamectl"
+    hostnamectl
+    echo "[ Input ] please input the new hostname"
+    hostnamectl
+    read newHostName
+    echo "[ Config ] set hostnamectl ${newHostName}"
+    sudo hostnamectl set-hostname ${newHostName}
+    
+}
+
+installBtPanel () {
+
+    echo "[ Install ] install bt panel"
+    yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
+    
+}
 
 installOhMyZsh () {
 
