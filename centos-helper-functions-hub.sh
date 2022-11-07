@@ -48,7 +48,7 @@ installOhMyZsh () {
 
     echo "[ Download ] download zsh plugin sources from github"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
     echo "[ Config ] set oh-my-zsh time stamp format for chinese friendly"
     sed -i 's/\# HIST_STAMPS=\"mm\/dd\/yyyy\"/HIST_STAMPS=\"yyyy-mm-dd\"/' ~/.zshrc
